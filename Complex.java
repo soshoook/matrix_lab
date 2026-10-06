@@ -14,7 +14,7 @@ public class Complex {
         return a;
     }
 
-    public Complex abs2(Complex digit){
+    public Complex abs2(){
 //|z|² = a² + b²
         double re_abs2 = (re * re);
         double im_abs2 = (im * im);
@@ -54,7 +54,11 @@ public class Complex {
 
     public Complex div(Complex digit){
 //z / w = (z · w̄) / (w · w̄) = (z · w̄) / |w|²
-       
+        Complex conjugate = digit.sopr();
+        Complex numerator = this.mult(conjugate);
+        Complex denominator = digit.abs2();
+        double modSq = denominator.re;
+        return new Complex(numerator.re / modSq, numerator.im / modSq);
     }
 
 }
