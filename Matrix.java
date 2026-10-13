@@ -40,10 +40,12 @@ public class Matrix {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < rows; i++) {
+            sb.append("| ");
             for (int j = 0; j < cols; j++) {
                 sb.append(this.data[i][j]);
                 sb.append("\t");
             }
+            sb.append(" |");
             sb.append("\n");
         }
         return sb.toString();
