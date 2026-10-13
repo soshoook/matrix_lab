@@ -10,16 +10,23 @@ public class Complex {
 
     @Override
     public String toString(){
-        String a = re + " + " + im + "i";
+        String a = "";
+        if (this.im > 0)
+            a = re + " + " + im + "i";
+        else
+            a = re + im + "i";
         return a;
     }
 
-    public Complex abs2(){
-//|z|² = a² + b²
-        double re_abs2 = (re * re);
-        double im_abs2 = (im * im);
-        Complex abs2 = new Complex(re_abs2, im_abs2);
-        return abs2;
+    public boolean isZero() {
+        return re == 0.0 && im == 0.0;
+    }
+
+    public double abs2() {
+// |z|² = a² + b²
+        double re_abs2 = re * re;
+        double im_abs2 = im * im;
+        return re_abs2 + im_abs2;
     }
 
     public Complex sopr(){
@@ -52,12 +59,14 @@ public class Complex {
         return mul;
     }
 
-    public Complex div(Complex digit){
-//z / w = (z · w̄) / (w · w̄) = (z · w̄) / |w|²
+
+    public Complex div(Complex digit) {
+        if (digit.isZero())
+            throw new ArithmeticException("Деление на ноль");
+        //z / w = (z · w̄) / (w · w̄) = (z · w̄) / |w|²
         Complex conjugate = digit.sopr();
         Complex numerator = this.mult(conjugate);
-        Complex denominator = digit.abs2();
-        double modSq = denominator.re;
+        double modSq = digit.abs2();
         return new Complex(numerator.re / modSq, numerator.im / modSq);
     }
 
