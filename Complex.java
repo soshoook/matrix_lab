@@ -11,10 +11,10 @@ public class Complex {
     @Override
     public String toString(){
         String a = "";
-        if (this.im > 0)
+        if (this.im >= 0)
             a = re + " + " + im + "i";
         else
-            a = re + im + "i";
+            a = re + " - "+ (-im) + "i";
         return a;
     }
 

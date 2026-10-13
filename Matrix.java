@@ -118,14 +118,13 @@ public class Matrix {
             return this.data[0][0];
 
         Complex sum = new Complex(0, 0);
-        for (int i = 0; i < this.rows; i++) {
-            for (int j = 0; j < this.cols; j++) {
-                Complex term = data[0][j].mult(minor(0, j).determinant());
-                if (j % 2 == 0)
-                    sum = sum.add(term);
-                else
-                    sum = sum.subs(term);
-            }
+        for (int j = 0; j < this.cols; j++) {
+            Complex term = data[0][j].mult(minor(0, j).determinant());
+            if (j % 2 == 0)
+                sum = sum.add(term);
+            else
+                sum = sum.subs(term);
+
         }
         return sum;
     }
